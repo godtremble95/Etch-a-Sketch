@@ -1,0 +1,26 @@
+body {
+  max-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1330px;
+  max-height: 1330px;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div>div {
+  flex: 0 0 6.25%;
+  /*max-height: 6.25%;*/
+  background-color: aquamarine;
+  aspect-ratio: 1/1;
+}
+
+/*div>div:hover {
+  background-color: black;
+}*/
