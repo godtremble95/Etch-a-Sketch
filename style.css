@@ -1,26 +1,43 @@
 body {
+  background-color: rgb(102, 17, 17);
   max-height: 100vh;
-  margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .container {
-  width: 100%;
-  max-width: 1330px;
-  max-height: 1330px;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 1000px;
   aspect-ratio: 1/1;
   display: flex;
   flex-wrap: wrap;
 }
 
 div>div {
-  flex: 0 0 6.25%;
-  /*max-height: 6.25%;*/
-  background-color: aquamarine;
+  flex-grow: 0;
+  flex-shrink: 0;
   aspect-ratio: 1/1;
 }
 
-/*div>div:hover {
+.unDrawn {
+  background-color: rgb(155, 184, 174);
+}
+
+.drawn {
   background-color: black;
-}*/
+}
+
+div>div:hover {
+  transform: scale(1.1);
+  background-color: rgb(51, 51, 51);
+}
+
+.selection {
+  width: 100%;
+  height: 50px;
+  margin: 0.5rem;
+  display: flex;
+}
