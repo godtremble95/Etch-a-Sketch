@@ -8,10 +8,19 @@
   <title>Etch-a-Sketch</title>
 </head>
 <body>
-  <div class="selection">
-    <button id="resize">Choose Grid Size</button>
+  <header>
+    <h1>Etch-a-Sketch</h1>
+  </header>
+  <div class="content">
+    <div class="container">
+      <div class="currentSize">16x16</div>
+      <div class="selection">
+        <button id="resize">Choose Grid Size</button>
+        <button id="reset">Reset</button>
+      </div>
+      <div id="grid"></div>
+    </div>
   </div>
-  <div class="container"></div>
   <script src="./script.js"></script>
 </body>
 </html>

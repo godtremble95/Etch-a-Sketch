@@ -1,5 +1,5 @@
 const resizeBtn = document.querySelector('button');
-const container = document.querySelector('.container');
+const grid = document.querySelector('#grid');
 const divGrid = [];
 
 resizeBtn.addEventListener('click', getDimentions);
@@ -11,7 +11,7 @@ function drawGrid(count){
   const tempLength = divGrid.length - 1;
   // remove old grid one <div> at a time, working down the array
   for (i = tempLength; i >= 0; i--) {
-    container.removeChild(divGrid[i]);
+    grid.removeChild(divGrid[i]);
     divGrid.pop();
   }
   // create <div>s and add to page one at a time
@@ -20,7 +20,7 @@ function drawGrid(count){
     divGrid[i].classList = 'unDrawn';
     divGrid[i].style.flexBasis = `${100/count}%`;
     divGrid[i].addEventListener('mouseover', changeColor);
-    container.appendChild(divGrid[i]);
+    grid.appendChild(divGrid[i]);
   }
 }
 
