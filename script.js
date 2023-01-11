@@ -1,13 +1,17 @@
-const resizeBtn = document.querySelector('button');
+const resizeBtn = document.querySelector('#resize');
+const resetBtn = document.querySelector('#reset');
+const sizeDisplay = document.querySelector('.currentSize');
 const grid = document.querySelector('#grid');
 const divGrid = [];
+let currentSize;
 
 resizeBtn.addEventListener('click', getDimentions);
+resetBtn.addEventListener('click', () => drawGrid(currentSize));
 
 // initialize grid at 16x16
-drawGrid(16);
+drawGrid();
 
-function drawGrid(count){
+function drawGrid(count = 16){
   const tempLength = divGrid.length - 1;
   // remove old grid one <div> at a time, working down the array
   for (i = tempLength; i >= 0; i--) {
@@ -22,6 +26,8 @@ function drawGrid(count){
     divGrid[i].addEventListener('mouseover', changeColor);
     grid.appendChild(divGrid[i]);
   }
+  currentSize = count;
+  sizeDisplay.textContent = `${currentSize}x${currentSize}`;
 }
 
 function changeColor() {
