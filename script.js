@@ -6,7 +6,6 @@ const grid = document.querySelector('#grid');
 const divGrid = [];
 let currentSize;
 
-//resizeBtn.addEventListener('click', getDimentions);
 resizeBtn.addEventListener('click', openSizeInput);
 resetBtn.addEventListener('click', () => drawGrid(currentSize));
 inputSize.addEventListener('keyup', (event) => {
@@ -57,15 +56,6 @@ function getDimentions() {
     inputSize.value = '';
   }
 }
-
-/*function getDimentions() {
-  let count = Number(prompt("Enter your desired sketch size:\nMax: 100"));
-  if (count === 0) return;
-  while (isNaN(count) || count > 100) {
-    count = Number(prompt("Enter your desired sketch size:\nMax: 100"));
-  }
-  drawGrid(count);
-}*/
 
 function toggleSizeInput() {
   (inputSize.dataset.state === 'closed' || inputSize.dataset.state === '') ?

@@ -11,8 +11,6 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  /*justify-items: center;
-  align-items: center;*/
 }
 
 header {
@@ -56,7 +54,6 @@ header {
 }
 
 button:hover {
-  /*transform: scale(1.05);*/
   color: rgb(151, 151, 151);
   border-color: rgb(151, 151, 151);
   background-color: black;
@@ -68,8 +65,6 @@ button:active {
 }
 
 #inputSize {
-  /*-webkit-transition: all 750ms ease-in-out;
-  transition: all 750ms ease-in-out;*/
   width: 0;
   margin: 0;
   padding: 0;
@@ -77,44 +72,30 @@ button:active {
 }
 
 #inputSize[data-state="opened"] {
-  /*width: 6.875rem;*/
   animation: inputSizeOpen 750ms ease-in-out forwards;
   display: inline-block;
 }
 
 #inputSize[data-state="closing"] {
-  /*transition: 1s ease;*/
   animation: inputSizeClose 750ms ease-in-out forwards;
 }
 
 #inputSize[data-state="closed"] {
-  /*transition: 1s ease;*/
   display: none;
 }
 
 #resize[data-state="opened"] {
-  /*width: 6.875rem;*/
   animation: inputSizeOpen 750ms ease-in-out forwards;
   display: inline-block;
 }
 
 #resize[data-state="closing"] {
-  /*transition: 1s ease;*/
   animation: inputSizeClose 750ms ease-in-out forwards;
 }
 
 #resize[data-state="closed"] {
-  /*transition: 1s ease;*/
   display: none;
 }
-
-/*.selection:has(#resize:hover) #inputSize {
-  animation: inputSizeOpen 1s ease-in-out 1s forwards;
-}*/
-
-/*#inputSize[data-state="open"] {
-  animation: .35s inputSizeOpen ease-in-out forwards;
-}*/
 
 @keyframes inputSizeOpen {
   0% {
