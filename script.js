@@ -1,12 +1,25 @@
 const resizeBtn = document.querySelector('#resize');
 const resetBtn = document.querySelector('#reset');
+const inputSize = document.querySelector('#inputSize');
 const sizeDisplay = document.querySelector('.currentSize');
 const grid = document.querySelector('#grid');
 const divGrid = [];
 let currentSize;
 
-resizeBtn.addEventListener('click', getDimentions);
+//resizeBtn.addEventListener('click', getDimentions);
+resizeBtn.addEventListener('click', openSizeInput);
 resetBtn.addEventListener('click', () => drawGrid(currentSize));
+inputSize.addEventListener('keyup', (event) => {
+  event.preventDefault();
+  switch (event.key) {
+    case 'Enter':
+      getDimentions();
+      break;
+    case 'Escape':
+      inputSize.blur();
+      break;
+  }
+});
 
 // initialize grid at 16x16
 drawGrid();
@@ -28,6 +41,7 @@ function drawGrid(count = 16){
   }
   currentSize = count;
   sizeDisplay.textContent = `${currentSize}x${currentSize}`;
+  inputSize.placeholder = `${currentSize}`;
 }
 
 function changeColor() {
@@ -35,10 +49,48 @@ function changeColor() {
 }
 
 function getDimentions() {
+  let dim = Number(inputSize.value);
+  if (dim <= Number(inputSize.min) || dim > Number(inputSize.max)) return;
+  else {
+    drawGrid(dim);
+    inputSize.blur();
+    inputSize.value = '';
+  }
+}
+
+/*function getDimentions() {
   let count = Number(prompt("Enter your desired sketch size:\nMax: 100"));
   if (count === 0) return;
   while (isNaN(count) || count > 100) {
     count = Number(prompt("Enter your desired sketch size:\nMax: 100"));
   }
   drawGrid(count);
+}*/
+
+function toggleSizeInput() {
+  (inputSize.dataset.state === 'closed' || inputSize.dataset.state === '') ?
+    openSizeInput() : closeSizeInput();
+}
+
+function openSizeInput() {
+  inputSize.dataset.state = 'opened';
+    resizeBtn.dataset.state = 'closing';
+    
+
+    resizeBtn.addEventListener('animationend', () => {
+      resizeBtn.dataset.state = 'closed';
+      inputSize.focus();
+      inputSize.addEventListener('blur', () => {
+        closeSizeInput();
+      }, {once: true});
+    }, {once: true});
+}
+
+function closeSizeInput() {
+  inputSize.dataset.state = 'closing';
+  resizeBtn.dataset.state = 'opened';
+
+  inputSize.addEventListener('animationend', () => {
+    inputSize.dataset.state = 'closed'
+  }, {once: true});
 }

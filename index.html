@@ -15,7 +15,9 @@
     <div class="container">
       <div class="currentSize">0x0</div>
       <div class="selection">
-        <button id="resize">Choose Grid Size</button>
+        <button id="resize" data-state="">Change Size</button>
+        <input id="inputSize" name="inputSize" type="number"
+              min="1" max="100" placeholder="16" data-state="">
         <button id="reset">Reset</button>
       </div>
       <div id="grid"></div>
