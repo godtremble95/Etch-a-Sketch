@@ -54,18 +54,15 @@ function drawGrid(count = 16){
 }
 
 function changeColor() {
-  if (eraseBtn.dataset.selected === 'false') {
-    this.classList = 'drawn';
-    if (rainbowBtn.dataset.selected === 'true') {
-      this.style.backgroundColor = getRandColor();
-    } else {
-      this.style.backgroundColor = inputColor.value;
-    }
-  } 
-  else {
+  if (eraseBtn.dataset.selected === 'true') {
     this.classList= 'unDrawn';
     this.style.backgroundColor = '';
+    return;
   }
+  this.classList = 'drawn';
+  this.style.backgroundColor = (rainbowBtn.dataset.selected === 'true')?
+    getRandColor() :
+    inputColor.value;
 }
 
 function getRandColor() {
