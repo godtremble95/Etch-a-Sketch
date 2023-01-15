@@ -9,6 +9,7 @@
 html, body {
   height: 100%;
 }
+
 body {
   background-color: whitesmoke;
   height: 100%;
@@ -53,12 +54,6 @@ header {
   border: 0.25rem inset rgb(177, 177, 177);
   border-radius: 0.5rem;
 }
-
-/*div:is(.selection) {
-  padding: 10px 5px;
-  font-size: 0;
-  display: flex;
-}*/
 
 :is(button, .inputSize) {
   height: 2.5rem;
