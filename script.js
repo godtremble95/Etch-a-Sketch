@@ -45,7 +45,7 @@ function drawGrid(count = 16){
     divGrid[i] = document.createElement('div');
     divGrid[i].classList = 'unDrawn';
     divGrid[i].style.flexBasis = `${100/count}%`;
-    divGrid[i].addEventListener('mouseover', changeColor);
+    divGrid[i].addEventListener('mouseleave', changeColor);
     grid.appendChild(divGrid[i]);
   }
   currentSize = count;
@@ -56,10 +56,24 @@ function drawGrid(count = 16){
 function changeColor() {
   if (eraseBtn.dataset.selected === 'false') {
     this.classList = 'drawn';
+    if (rainbowBtn.dataset.selected === 'true') {
+      this.style.backgroundColor = getRandColor();
+    } else {
+      this.style.backgroundColor = inputColor.value;
+    }
   } 
   else {
     this.classList= 'unDrawn';
+    this.style.backgroundColor = '';
   }
+}
+
+function getRandColor() {
+  const rgb = [];
+  for (i = 0; i < 3; i ++) {
+    rgb[i] = Math.floor(Math.random() * 256)
+  }
+  return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
 }
 
 function getDimentions() {
