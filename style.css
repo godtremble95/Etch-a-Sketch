@@ -33,17 +33,18 @@ header {
 .container {
   background-color:blanchedalmond;
   flex: 0 1 43rem;
-  padding: 1rem 1.5rem 1.5rem;
+  padding: 1rem 1.5rem 0;
   border: 0.125rem solid black;
   border-radius: 1.5rem;
   box-shadow: 0.5rem 0.5rem 0.5rem rgb(69 69, 69);
   display: grid;
-  grid-template-rows: 3.125rem 3.75rem 1fr;
+  grid-template-rows: 3.125rem 3.75rem 1fr 1.5rem;
   grid-template-columns: 9.788rem 6.189rem 1fr repeat(3, 5.326rem);
   grid-template-areas:
     "display display display display display display"
     "inputSize reset . eraser rainbow inputColor"
-    "grid grid grid grid grid grid";
+    "grid grid grid grid grid grid"
+    "footer footer footer footer footer footer";
 }
 
 .currentSize {
@@ -246,6 +247,13 @@ div>div:empty {
 div>div:empty:hover {
   transform: scale(1.1);
   background-color: rgb(51, 51, 51);
+}
+
+footer {
+  grid-area: footer;
+  font-size: .8rem;
+  text-align: center;
+  margin: 0.125rem;
 }
 
 @keyframes inputSizeOpen {
