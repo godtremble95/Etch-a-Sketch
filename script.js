@@ -1,13 +1,23 @@
 const resizeBtn = document.querySelector('#resize');
 const resetBtn = document.querySelector('#reset');
+const optionBtns = document.querySelectorAll('.options');
+const eraseBtn = document.querySelector('#eraser');
+const rainbowBtn = document.querySelector('#rainbow');
+const inputColor = document.querySelector('#inputColor');
 const inputSize = document.querySelector('#inputSize');
 const sizeDisplay = document.querySelector('.currentSize');
 const grid = document.querySelector('#grid');
 const divGrid = [];
 let currentSize;
 
+optionBtns.forEach(btn => {
+  btn.addEventListener('click', toggleSelected);
+});
 resizeBtn.addEventListener('click', openSizeInput);
 resetBtn.addEventListener('click', () => drawGrid(currentSize));
+//optionBtns.addEventListener('click', toggleSelected);
+//eraseBtn.addEventListener('click', toggleSelected);
+//rainbowBtn.addEventListener('click', toggleSelected);
 inputSize.addEventListener('keyup', (event) => {
   event.preventDefault();
   switch (event.key) {
@@ -44,7 +54,12 @@ function drawGrid(count = 16){
 }
 
 function changeColor() {
-  this.classList = 'drawn';
+  if (eraseBtn.dataset.selected === 'false') {
+    this.classList = 'drawn';
+  } 
+  else {
+    this.classList= 'unDrawn';
+  }
 }
 
 function getDimentions() {
@@ -83,4 +98,19 @@ function closeSizeInput() {
   inputSize.addEventListener('animationend', () => {
     inputSize.dataset.state = 'closed'
   }, {once: true});
+}
+
+function toggleSelected() {
+  if (this.dataset.selected === 'false') {
+    this.dataset.selected = 'true';
+    optionBtns.forEach(btn => {
+      if (btn !== this) {
+        btn.dataset.selected = 'false';
+      }
+    });
+  }
+  else {
+    this.dataset.selected = 'false';
+    inputColor.dataset.selected = 'true';
+  }
 }
