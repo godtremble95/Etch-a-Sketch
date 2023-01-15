@@ -36,9 +36,17 @@ header {
   border: 0.125rem solid black;
   border-radius: 1.5rem;
   box-shadow: 0.5rem 0.5rem 0.5rem rgb(69 69, 69);
+  display: grid;
+  grid-template-rows: 3.125rem 3.75rem 1fr;
+  grid-template-columns: 9.788rem 6.189rem 1fr repeat(3, 5.326rem);
+  grid-template-areas:
+    "display display display display display display"
+    "inputSize reset . eraser rainbow inputColor"
+    "grid grid grid grid grid grid";
 }
 
 .currentSize {
+  grid-area: display;
   text-align: center;
   font-size: 2rem;
   background-color: rgb(155, 184, 174);
@@ -46,10 +54,11 @@ header {
   border-radius: 0.5rem;
 }
 
-div:is(.selection) {
+/*div:is(.selection) {
   padding: 10px 5px;
   font-size: 0;
-}
+  display: flex;
+}*/
 
 :is(button, .inputSize) {
   height: 2.5rem;
@@ -58,12 +67,49 @@ div:is(.selection) {
   border: 3px solid black;
   border-radius: 1.25rem;
   background-color: transparent;
-  margin-right: 5px;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: middle;
+}
+
+#resize, #inputSize,
+#reset, #eraser,
+#rainbow, #inputColor {
+  align-self: center;
+}
+
+#resize, #inputSize {
+  grid-area: inputSize;
+}
+
+#inputSize {
+  width: 0;
+  margin-left: 5px;
+  padding: 0;
+  border: 0;
+  justify-self: start;
+}
+
+#resize, #reset {
+  justify-self: end;
+}
+
+#reset {
+  grid-area: reset;
+}
+
+#resizeText {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
+  font-size: 0.9rem;
+  align-self: center;
+  display: none;
+}
+
+#inputSize[data-state="opened"] + #resizeText {
+  display: inline;
 }
 
 .options {
@@ -74,12 +120,37 @@ div:is(.selection) {
   border-radius: 1.25rem;
   background-color: transparent;
   background: none;
-  margin-right: 5px;
   overflow: hidden;
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   vertical-align: middle;
+}
+
+#eraseSelect {
+  grid-area: 1 / 4 / 2 / 5;
+  display: none;
+}
+
+#rainbowSelect {
+  grid-area: 1 / 5 / 2 / 6;
+  display: none;
+}
+
+#colorSelect {
+  grid-area: 1 / 6 / 2 / 7;
+  display: none;
+}
+
+#eraser[data-selected="true"] + #eraseSelect,
+#rainbow[data-selected="true"] + #rainbowSelect,
+#inputColor[data-selected="true"] + #colorSelect {
+  display: inline;
+}
+
+.selected {
+  font-size: 2.5rem;
+  margin-left: 0.4rem;
 }
 
 button > img {
@@ -104,13 +175,6 @@ button:hover {
 button:active {
   scale: 0.95;
   color: black;
-}
-
-#inputSize {
-  width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
 }
 
 #inputSize::-webkit-outer-spin-button,
@@ -149,7 +213,20 @@ input[type=number]{
   display: none;
 }
 
+#eraser {
+  grid-area: eraser;
+}
+
+#rainbow {
+  grid-area: rainbow;
+}
+
+#inputColor {
+  grid-area: inputColor;
+}
+
 #grid {
+  grid-area: grid;
   aspect-ratio: 1/1;
   display: flex;
   flex-wrap: wrap;
@@ -185,7 +262,7 @@ div>div:empty:hover {
   }
   100% {
     width: 9.476rem;
-    margin-right: 5px;
+    margin-left: 5px;
     padding: .25rem 1.25rem;
     border: 3px solid black;
   }
@@ -194,7 +271,7 @@ div>div:empty:hover {
 @keyframes inputSizeClose {
   0% {
     width: 9.476rem;
-    margin-right: 5px;
+    margin-left: 5px;
     padding: .25rem 1.25rem;
     border: 3px solid black;
   }

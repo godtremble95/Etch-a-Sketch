@@ -15,9 +15,6 @@ optionBtns.forEach(btn => {
 });
 resizeBtn.addEventListener('click', openSizeInput);
 resetBtn.addEventListener('click', () => drawGrid(currentSize));
-//optionBtns.addEventListener('click', toggleSelected);
-//eraseBtn.addEventListener('click', toggleSelected);
-//rainbowBtn.addEventListener('click', toggleSelected);
 inputSize.addEventListener('keyup', (event) => {
   event.preventDefault();
   switch (event.key) {
