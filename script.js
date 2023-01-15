@@ -1,9 +1,13 @@
 const resizeBtn = document.querySelector('#resize');
 const resetBtn = document.querySelector('#reset');
+const resizeText = document.querySelector('#resizeText');
 const optionBtns = document.querySelectorAll('.options');
 const eraseBtn = document.querySelector('#eraser');
 const rainbowBtn = document.querySelector('#rainbow');
 const inputColor = document.querySelector('#inputColor');
+const eraseSelect = document.querySelector('#eraseSelect');
+const rainbowSelect = document.querySelector('#rainbowSelect');
+const colorSelect = document.querySelector('#colorSelect');
 const inputSize = document.querySelector('#inputSize');
 const sizeDisplay = document.querySelector('.currentSize');
 const grid = document.querySelector('#grid');
@@ -72,8 +76,10 @@ function getRandColor() {
 
 function getDimentions() {
   let dim = Number(inputSize.value);
-  if (dim <= Number(inputSize.min) || dim > Number(inputSize.max)) return;
-  else {
+  if (dim < Number(inputSize.min) || dim > Number(inputSize.max)) {
+    flashDisplay(this);
+    inputSize.value = '';
+  } else {
     drawGrid(dim);
     inputSize.blur();
     inputSize.value = '';
@@ -116,9 +122,39 @@ function toggleSelected() {
         btn.dataset.selected = 'false';
       }
     });
+    flashDisplay(this);
   }
   else {
     this.dataset.selected = 'false';
     inputColor.dataset.selected = 'true';
+    flashDisplay(inputColor);
+  }
+  
+}
+
+function flashDisplay(source) {
+  console.log(source);
+  switch (source) {
+    case window:
+      flash(resizeText);
+      break;
+    case eraseBtn:
+      flash(eraseSelect);
+      break;
+    case rainbowBtn:
+      flash(rainbowSelect);
+      break;
+    case inputColor:
+      flash(colorSelect);
+      break;
+  }
+  async function flash(display) {
+    for (i = 0; i < 2; i++) {
+      display.style.display = 'none';
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      display.style.display = 'inline';
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+    display.style.display = '';
   }
 }
